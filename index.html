@@ -19,7 +19,7 @@
             const c = parseFloat(document.getElementById('c').value) || 0;
             const d = parseFloat(document.getElementById('d').value) || 0;
 
-            fetch('https://banco-calculadora.netlify.app/.netlify/functions/process.py', {
+            fetch('https://banco-calculadora.netlify.app/.netlify/functions/process', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

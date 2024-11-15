@@ -3,14 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Frontend en GitHub Pages</title>
+    <title>Cálculo de Interés</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 100%;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Calculadora</h1>
-    <input type="number" id="inputValue" placeholder="Ingresa un número">
-    <button onclick="calculate()">Enviar</button>
-    <p id="result"></p>
-
-    <script src="script.js"></script>
+    <div class="container">
+        <h1>Cálculo de Interés</h1>
+        <form id="interestForm">
+            <div>
+                <label for="initialCapital">Capital Inicial:</label>
+                <input type="number" id="initialCapital" placeholder="Ingresa el capital inicial (solo números)" required>
+            </div>
+            <div>
+                <label for="periodicContribution">Aporte Periódico:</label>
+                <input type="number" id="periodicContribution" placeholder="Ingresa el aporte periódico (solo números)" required>
+            </div>
+            <div>
+                <label for="finalCapital">Capital Final:</label>
+                <input type="number" id="finalCapital" placeholder="Ingresa el capital final deseado (solo números)" required>
+            </div>
+            <div>
+                <label for="numPeriods">Número de Períodos:</label>
+                <input type="number" id="numPeriods" placeholder="Ingresa el número de períodos (solo números)" required>
+            </div>
+            <button type="button" onclick="calculateInterest()">Calcular</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
 </body>
 </html>

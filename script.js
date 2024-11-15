@@ -1,7 +1,10 @@
 async function calculate() {
-    const inputValue = document.getElementById('inputValue').value;
+    const initialCapital = Number(document.getElementById('initialCapital').value);
+    const periodicContribution = Number(document.getElementById('periodicContribution').value);
+    const finalCapital = Number(document.getElementById('finalCapital').value);
+    const numPeriods = Number(document.getElementById('numPeriods').value);
 
-    const url = 'https://backend-calculadora.onrender.com/api/calculate';
+    const url = 'https://backend-calculadora.onrender.com//api/calculate';
 
     try {
         const response = await fetch(url, {
@@ -9,7 +12,12 @@ async function calculate() {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ input: Number(inputValue) }),
+            body: JSON.stringify({
+                initialCapital: initialCapital,
+                periodicContribution: periodicContribution,
+                finalCapital: finalCapital,
+                numPeriods: numPeriods
+            }),
         });
 
         if (!response.ok) {

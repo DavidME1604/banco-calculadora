@@ -1,39 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Calculadora</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend en GitHub Pages</title>
 </head>
 <body>
     <h1>Calculadora</h1>
-    <input type="number" id="a" placeholder="Ingrese a">
-    <input type="number" id="b" placeholder="Ingrese b">
-    <input type="number" id="c" placeholder="Ingrese c">
-    <input type="number" id="d" placeholder="Ingrese d">
-    <button onclick="enviarDatos()">Calcular</button>
-    <p id="resultado"></p>
+    <input type="number" id="inputValue" placeholder="Ingresa un número">
+    <button onclick="calculate()">Enviar</button>
+    <p id="result"></p>
 
-    <script>
-        function enviarDatos() {
-            const a = parseFloat(document.getElementById('a').value) || 0;
-            const b = parseFloat(document.getElementById('b').value) || 0;
-            const c = parseFloat(document.getElementById('c').value) || 0;
-            const d = parseFloat(document.getElementById('d').value) || 0;
-
-            fetch('https://banco-calculadora.netlify.app/.netlify/functions/process', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ a, b, c, d })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('resultado').innerText = 'Resultado: ' + data.result;
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

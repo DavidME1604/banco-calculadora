@@ -6,7 +6,7 @@ async function calculateInterest() {
     const finalCapital = Number(document.getElementById('finalCapital').value);
     const numPeriods = Number(document.getElementById('numPeriods').value);
 
-    const url = 'https://backend-calculadora.onrender.com//api/calculate';
+    const url = 'https://backend-calculadora.onrender.com/api/calculate';
 
     try {
         const response = await fetch(url, {
@@ -40,8 +40,8 @@ async function calculateInterest() {
 
 function showDetails() {
     // Redirigir a otra página HTML (details.html)
-    window.location.href = 'details.html';
     fetchChartImage()
+    window.location.href = 'details.html'
 }
 
 async function fetchChartImage() {

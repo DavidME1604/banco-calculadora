@@ -1,3 +1,5 @@
+document.getElementById('calculateButton').addEventListener('click', calculateInterest);
+
 async function calculateInterest() {
     const initialCapital = Number(document.getElementById('initialCapital').value);
     const periodicContribution = Number(document.getElementById('periodicContribution').value);

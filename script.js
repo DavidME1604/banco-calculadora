@@ -45,7 +45,7 @@ function showDetails() {
 }
 
 async function fetchChartImage() {
-    const url = 'https://backend-calculadora.onrender.com/api/chart';
+    const url = 'https://backend-calculadora.onrender.com//api/chart';
 
     try {
         const response = await fetch(url, {

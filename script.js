@@ -49,7 +49,7 @@ async function fetchChartImage() {
 
     try {
         const response = await fetch(url, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -60,8 +60,6 @@ async function fetchChartImage() {
         }
 
         const data = await response.json();
-
-        // Obtener la URL de la imagen del gráfico
         const imageUrl = data.chartUrl;
         const chartImage = document.getElementById('resultChartImage');
         chartImage.src = imageUrl;

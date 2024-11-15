@@ -2,7 +2,7 @@ async function calculate() {
     const inputValue = document.getElementById('inputValue').value;
 
     // URL de tu backend desplegado en Render
-    const url = 'https://https://backend-calculadora.onrender.com/api/calculate';
+    const url = 'https://backend-calculadora.onrender.com/api/calculate';
 
     try {
         const response = await fetch(url, {

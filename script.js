@@ -1,4 +1,4 @@
-async function calculate() {
+async function calculateInterest() {
     const initialCapital = Number(document.getElementById('initialCapital').value);
     const periodicContribution = Number(document.getElementById('periodicContribution').value);
     const finalCapital = Number(document.getElementById('finalCapital').value);

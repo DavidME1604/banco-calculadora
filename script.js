@@ -28,8 +28,17 @@ async function calculateInterest() {
 
         const data = await response.json();
         document.getElementById('result').innerText = `Resultado: ${data.result}`;
+
+        const detailsButton = document.getElementById('detailsButton');
+        detailsButton.style.display = 'inline-block';
+
     } catch (error) {
         console.error(error);
         document.getElementById('result').innerText = 'Ocurrió un error al realizar la petición.';
     }
+}
+
+function showDetails() {
+    // Redirigir a otra página HTML (details.html)
+    window.location.href = 'details.html';
 }

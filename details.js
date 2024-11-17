@@ -1,7 +1,8 @@
 // Función para obtener la URL del gráfico y actualizar la imagen
 async function fetchChartImage() {
     const url = 'https://backend-calculadora.onrender.com/api/chart';
-
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.style.display = 'flex';
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -30,6 +31,9 @@ async function fetchChartImage() {
     } catch (error) {
         console.error('Error al obtener la URL del gráfico:', error);
         alert('Ocurrió un error al obtener la imagen del gráfico.');
+    } finally {
+        // Ocultar la pantalla de carga
+        loadingScreen.style.display = 'none';
     }
 }
 

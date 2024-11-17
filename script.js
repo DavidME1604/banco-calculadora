@@ -5,7 +5,8 @@ async function calculateInterest() {
     const numPeriods = document.getElementById('numPeriods').value;
 
     const url = 'https://backend-calculadora.onrender.com//api/calculate';
-
+    const loadingScreen = document.getElementById('loadingScreen');
+    loadingScreen.style.display = 'flex';
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -33,6 +34,9 @@ async function calculateInterest() {
     } catch (error) {
         console.error(error);
         document.getElementById('result').innerText = 'Ocurrió un error al realizar la petición.';
+    } finally {
+        // Ocultar la pantalla de carga
+        loadingScreen.style.display = 'none';
     }
 }
 

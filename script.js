@@ -69,9 +69,6 @@ async function fetchChartImage() {
         console.error('Error al obtener la URL del gráfico:', error);
         alert('Ocurrió un error al obtener la imagen del gráfico.');
     }
-    const chartImage = document.getElementById('resultChartImage');
-    chartImage.src = 'https://backend-calculadora.onrender.com/static/grafico_funcion.png';
-    chartImage.alt = 'Gráfico de Resultados';
 }
 
 
@@ -81,5 +78,8 @@ function goBack() {
 
 function showDetails() {
     fetchChartImage()
+    const chartImage = document.getElementById('resultChartImage');
+    chartImage.src = 'https://backend-calculadora.onrender.com/static/grafico_funcion.png';
+    chartImage.alt = 'Gráfico de Resultados';
     window.location.href = 'details.html';
 }

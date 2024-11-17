@@ -6,7 +6,6 @@
     <title>Detalles de Cálculo</title>
     <link rel="stylesheet" href="styles.css">
     <script>
-    // Redireccionar a index.html si se recarga la página
         if (performance.getEntriesByType("navigation")[0].type === "reload") {
             window.location.href = 'index.html';
         }
@@ -17,10 +16,10 @@
     <div class="container">
         <h1>Detalles de Cálculo</h1>
         <div id="chartContainer">
-            <img id="resultChartImage" src= 'https://backend-calculadora.onrender.com/static/grafico_funcion.png' alt="Resultados" style="max-width: 100%; border-radius: 10px;">
+            <img id="resultChartImage" alt="Resultados" style="max-width: 100%; border-radius: 10px;">
         </div>
         <button onclick="goBack()" id="backButton">Volver</button>
     </div>
-    <script src="details.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

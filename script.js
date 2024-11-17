@@ -1,5 +1,3 @@
-document.getElementById('calculateButton').addEventListener('click', calculateInterest);
-
 async function calculateInterest() {
     const initialCapital = document.getElementById('initialCapital').value;
     const periodicContribution = document.getElementById('periodicContribution').value;
@@ -38,11 +36,7 @@ async function calculateInterest() {
     }
 }
 
-function showDetails() {
-    // Redirigir a otra página HTML (details.html)
-    window.location.href = 'details.html';
-}
-
+// Función para obtener la URL del gráfico y actualizar la imagen
 async function fetchChartImage() {
     const url = 'https://backend-calculadora.onrender.com/api/chart';
 
@@ -54,25 +48,36 @@ async function fetchChartImage() {
             },
         });
 
+        // Verificar si la respuesta fue exitosa
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
 
+        // Obtener los datos JSON de la respuesta
         const data = await response.json();
 
-        // Obtener la URL de la imagen del gráfico
+        // Extraer la URL de la imagen del gráfico
         const imageUrl = data.chartUrl;
+
+        // Obtener el elemento <img> y actualizar el atributo src
         const chartImage = document.getElementById('resultChartImage');
-        //chartImage.src = imageUrl;
+        chartImage.src = imageUrl;
         chartImage.alt = 'Gráfico de Resultados';
 
+        console.log(`URL de la imagen obtenida: ${imageUrl}`);
+
     } catch (error) {
-        console.error(error);
+        console.error('Error al obtener la URL del gráfico:', error);
         alert('Ocurrió un error al obtener la imagen del gráfico.');
     }
 }
 
-// Función para volver a la página anterior
+
 function goBack() {
     window.location.href = 'index.html';
+}
+
+function showDetails() {
+    fetchChartImage()
+    window.location.href = 'details.html';
 }

@@ -33,6 +33,7 @@ async function fetchChartImage() {
     }
 }
 
+window.onload = fetchChartImage;
 function goBack() {
     window.location.href = 'index.html';
 }

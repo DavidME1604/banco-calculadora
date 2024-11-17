@@ -38,6 +38,5 @@ async function calculateInterest() {
 
 
 function showDetails() {
-    fetchChartImage()
     window.location.href = 'details.html';
 }

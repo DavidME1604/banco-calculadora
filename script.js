@@ -1,10 +1,10 @@
 document.getElementById('calculateButton').addEventListener('click', calculateInterest);
 
 async function calculateInterest() {
-    const initialCapital = Number(document.getElementById('initialCapital').value);
-    const periodicContribution = Number(document.getElementById('periodicContribution').value);
-    const finalCapital = Number(document.getElementById('finalCapital').value);
-    const numPeriods = Number(document.getElementById('numPeriods').value);
+    const initialCapital = document.getElementById('initialCapital').value;
+    const periodicContribution = document.getElementById('periodicContribution').value;
+    const finalCapital = document.getElementById('finalCapital').value;
+    const numPeriods = document.getElementById('numPeriods').value;
 
     const url = 'https://backend-calculadora.onrender.com//api/calculate';
 

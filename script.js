@@ -40,7 +40,6 @@ async function calculateInterest() {
 
 function showDetails() {
     // Redirigir a otra página HTML (details.html)
-    fetchChartImage()
     window.location.href = 'details.html';
 }
 

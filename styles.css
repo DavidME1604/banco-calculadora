@@ -154,3 +154,6 @@ input:focus {
     color: #ffffff;
 }
 
+#loadingScreen{
+    display: none;
+}

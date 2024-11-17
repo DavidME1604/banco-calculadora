@@ -40,8 +40,8 @@ async function calculateInterest() {
 
 function showDetails() {
     // Redirigir a otra página HTML (details.html)
-    window.location.href = 'details.html';
     fetchChartImage()
+    window.location.href = 'details.html';
 }
 
 async function fetchChartImage() {
@@ -49,7 +49,7 @@ async function fetchChartImage() {
 
     try {
         const response = await fetch(url, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -64,7 +64,7 @@ async function fetchChartImage() {
         // Obtener la URL de la imagen del gráfico
         const imageUrl = data.chartUrl;
         const chartImage = document.getElementById('resultChartImage');
-        chartImage.src = imageUrl;
+        //chartImage.src = imageUrl;
         chartImage.alt = 'Gráfico de Resultados';
 
     } catch (error) {

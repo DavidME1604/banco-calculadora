@@ -1,9 +1,19 @@
-async function calculateInterest() {
+function calculateInterest() {
     const initialCapital = document.getElementById('initialCapital').value;
     const periodicContribution = document.getElementById('periodicContribution').value;
     const finalCapital = document.getElementById('finalCapital').value;
     const numPeriods = document.getElementById('numPeriods').value;
+    const frequency = document.getElementById('frequency').value;
 
+    if ((frequency == 'diario' &&  numPeriods<=365)||(frequency == 'semanal' &&  numPeriods<=52)||(frequency == 'mensual' &&  numPeriods<=12)||(frequency == 'timestral' &&  numPeriods<=4)||(frequency == 'semestral' &&  numPeriods<=2)||(frequency == 'anual' &&  numPeriods<=1)){
+        fetchInterest();
+    }else{
+        alert('El número de períodos debe ser igual al número de períodos de la frecuencia de aporte');
+    }
+
+}
+
+async function fetchInterest() {
     const url = 'https://backend-calculadora.onrender.com//api/calculate';
     const loadingScreen = document.getElementById('loadingScreen');
     loadingScreen.style.display = 'flex';
@@ -30,15 +40,18 @@ async function calculateInterest() {
 
         const detailsButton = document.getElementById('detailsButton');
         detailsButton.style.display = 'inline-block';
-
     } catch (error) {
-        console.error(error);
-        document.getElementById('result').innerText = 'Ocurrió un error al realizar la petición.';
+        loadingScreen.style.display = 'none';
+        alert('Ocurrió un error al hacer la petición')
     } finally {
         // Ocultar la pantalla de carga
         loadingScreen.style.display = 'none';
     }
 }
+
+
+
+loadingScreen.style.display = 'none';
 
 
 function showDetails() {

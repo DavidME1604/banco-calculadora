@@ -14,13 +14,11 @@
 </head>
 <body>
     <div class="container">
-    <h1>Detalles de Cálculo</h1>
-    <div id="resultContainer" class="flex-container">
-        <!-- Contenedor de la imagen -->
+        <h1>Detalles de Cálculo</h1>
         <div id="chartContainer">
             <img id="resultChartImage" alt="Resultados" style="max-width: 100%; border-radius: 10px;">
         </div>
-        <!-- Contenedor de la tabla -->
+        <button onclick="goBack()" id="backButton">Volver</button>
         <div id="tableContainer">
             <table id="interestTable" class="styled-table">
                 <thead>
@@ -38,9 +36,15 @@
             </table>
         </div>
     </div>
-    <button onclick="goBack()" id="backButton">Volver</button>
-</div>
-
+    <!-- Pantalla de Carga -->
+    <div id="loadingScreen">
+        <div class="loader">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+        <p id="loadingText">Cargando, por favor espera...</p>
+    </div>
 
     <script src="details.js"></script>
 </body>

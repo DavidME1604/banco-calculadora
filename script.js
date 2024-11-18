@@ -1,10 +1,19 @@
 function calculateInterest() {
     const frequency = document.getElementById('frequency').value;
-
-    if ((frequency === 'diario' &&  numPeriods<=365)||(frequency === 'semanal' &&  numPeriods<=52)||(frequency === 'mensual' &&  numPeriods<=12)||(frequency === 'timestral' &&  numPeriods<=4)||(frequency === 'semestral' &&  numPeriods<=2)||(frequency === 'anual' &&  numPeriods<=1)){
-        fetchInterest();
-    }else{
-        alert('El número de períodos debe ser igual al número de períodos de la frecuencia de aporte');
+    try {
+        const numPeriods = parseFloat(document.getElementById('numPeriods').value);
+        if ((frequency === 'diario' &&  numPeriods<=365)||
+            (frequency === 'semanal' &&  numPeriods<=52)||
+            (frequency === 'mensual' &&  numPeriods<=12)||
+            (frequency === 'trimestral' &&  numPeriods<=4)||
+            (frequency === 'semestral' &&  numPeriods<=2)||
+            (frequency === 'anual' &&  numPeriods<=1)){
+            fetchInterest();
+        }else{
+            alert('El número de períodos debe ser igual al número de períodos de la frecuencia de aporte');
+        }
+    } catch (error) {
+        alert('Datos mal ingresados, deben ser números')
     }
 
 }

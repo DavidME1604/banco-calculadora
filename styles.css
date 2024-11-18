@@ -164,3 +164,61 @@ select{
     padding: 10px;
     border-radius: 10px;
 }
+
+/* Estilos para la tabla de interés */
+#interestTable {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#interestTable th, #interestTable td {
+    padding: 12px;
+    text-align: center;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#interestTable th {
+    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+#interestTable tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+#interestTable td {
+    font-size: 0.9em;
+}
+
+/* Estilo para el contenedor de la tabla */
+#tableContainer {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Estilo para el botón de volver */
+#backButton {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #ff4081;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+}
+
+#backButton:hover {
+    background-color: #e91e63;
+}

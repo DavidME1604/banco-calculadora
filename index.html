@@ -19,6 +19,15 @@
                 <input type="number" id="periodicContribution">
             </div>
             <div class="input-group">
+                <label for="frequency">Frecuencia del Aporte:</label>
+                <select id="frequency">
+                    <option value="mensual">Mensual</option>
+                    <option value="trimestral">Trimestral</option>
+                    <option value="semestral">Semestral</option>
+                    <option value="anual">Anual</option>
+                </select>
+            </div>
+            <div class="input-group">
                 <label for="finalCapital">Capital Final:</label>
                 <input type="number" id="finalCapital">
             </div>
@@ -33,7 +42,7 @@
         </form>
         <div id="result" class="result"></div>
     </div>
-        <!-- Pantalla de Carga -->
+    <!-- Pantalla de Carga -->
     <div id="loadingScreen">
         <div class="loader">
             <div class="bar"></div>

@@ -14,7 +14,7 @@ function calculateInterest() {
 }
 
 async function fetchInterest() {
-    const url = 'https://backend-calculadora.onrender.com//api/calculate';
+    const url = 'https://backend-calculadora.onrender.com/api/calculate';
     const loadingScreen = document.getElementById('loadingScreen');
     loadingScreen.style.display = 'flex';
     try {
@@ -43,6 +43,7 @@ async function fetchInterest() {
     } catch (error) {
         loadingScreen.style.display = 'none';
         alert('Ocurrió un error al hacer la petición')
+        console.log(error)
     } finally {
         // Ocultar la pantalla de carga
         loadingScreen.style.display = 'none';

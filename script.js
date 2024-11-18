@@ -27,7 +27,8 @@ async function fetchInterest() {
                 initialCapital: initialCapital,
                 periodicContribution: periodicContribution,
                 finalCapital: finalCapital,
-                numPeriods: numPeriods
+                numPeriods: numPeriods,
+                frequency: frequency
             }),
         });
 

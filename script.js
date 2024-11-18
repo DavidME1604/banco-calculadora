@@ -1,8 +1,4 @@
 function calculateInterest() {
-    const initialCapital = document.getElementById('initialCapital').value;
-    const periodicContribution = document.getElementById('periodicContribution').value;
-    const finalCapital = document.getElementById('finalCapital').value;
-    const numPeriods = document.getElementById('numPeriods').value;
     const frequency = document.getElementById('frequency').value;
 
     if ((frequency == 'diario' &&  numPeriods<=365)||(frequency == 'semanal' &&  numPeriods<=52)||(frequency == 'mensual' &&  numPeriods<=12)||(frequency == 'timestral' &&  numPeriods<=4)||(frequency == 'semestral' &&  numPeriods<=2)||(frequency == 'anual' &&  numPeriods<=1)){
@@ -14,8 +10,13 @@ function calculateInterest() {
 }
 
 async function fetchInterest() {
-    const url = 'https://backend-calculadora.onrender.com/api/calculate';
+    const url = 'https://backend-calculadora.onrender.com//api/calculate';
+    const initialCapital = document.getElementById('initialCapital').value;
+    const periodicContribution = document.getElementById('periodicContribution').value;
+    const finalCapital = document.getElementById('finalCapital').value;
+    const numPeriods = document.getElementById('numPeriods').value;
     const loadingScreen = document.getElementById('loadingScreen');
+    const frequency = document.getElementById('frequency').value;
     loadingScreen.style.display = 'flex';
     try {
         const response = await fetch(url, {
@@ -44,7 +45,6 @@ async function fetchInterest() {
     } catch (error) {
         loadingScreen.style.display = 'none';
         alert('Ocurrió un error al hacer la petición')
-        console.log(error)
     } finally {
         // Ocultar la pantalla de carga
         loadingScreen.style.display = 'none';

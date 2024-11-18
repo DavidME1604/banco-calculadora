@@ -19,6 +19,22 @@
             <img id="resultChartImage" alt="Resultados" style="max-width: 100%; border-radius: 10px;">
         </div>
         <button onclick="goBack()" id="backButton">Volver</button>
+        <div id="tableContainer">
+            <table id="interestTable" class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Semana</th>
+                        <th>Aporte ($)</th>
+                        <th>Capital ($)</th>
+                        <th>Ganancia ($)</th>
+                        <th>Total ($)</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Las filas serán insertadas dinámicamente con JavaScript -->
+                </tbody>
+            </table>
+        </div>
     </div>
     <!-- Pantalla de Carga -->
     <div id="loadingScreen">

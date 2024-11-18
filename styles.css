@@ -45,7 +45,7 @@ input {
     padding: 12px;
     border: none;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.894);
     color: #6d6d6d;
 }
 
@@ -156,4 +156,11 @@ input:focus {
 
 #loadingScreen{
     display: none;
+}
+
+select{
+    flex: 0.5;
+    width: 50%;
+    padding: 10px;
+    border-radius: 10px;
 }

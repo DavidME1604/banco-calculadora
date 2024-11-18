@@ -47,12 +47,6 @@ async function fetchTableData() {
         }
 
         const data = await response.json();
-
-        if (!Array.isArray(data) || data.length === 0) {
-            console.error('Los datos no son válidos o están vacíos:', data);
-            alert('No hay datos disponibles para mostrar en la tabla.');
-            return;
-        }
         createTable(data.dataTable);
 
     } catch (error) {

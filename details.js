@@ -53,12 +53,7 @@ async function fetchTableData() {
             alert('No hay datos disponibles para mostrar en la tabla.');
             return;
         }
-
-        if (data.error) {
-            alert(data.error);
-        } else {
-            createTable(data.dataTable);
-        }
+        createTable(data.dataTable);
 
     } catch (error) {
         console.error('Error al obtener los datos de la tabla:', error);

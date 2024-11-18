@@ -165,10 +165,30 @@ select{
     border-radius: 10px;
 }
 
-/* Estilos para la tabla de interés */
+/* Contenedor flex para alinear la imagen y la tabla horizontalmente */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* Estilo para el contenedor de la imagen */
+#chartContainer {
+    flex: 1;
+    max-width: 45%;
+}
+
+/* Estilo para el contenedor de la tabla */
+#tableContainer {
+    flex: 1;
+    max-width: 45%;
+}
+
+/* Estilo para la tabla de interés */
 #interestTable {
     width: 100%;
-    margin-top: 20px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -195,14 +215,7 @@ select{
     font-size: 0.9em;
 }
 
-/* Estilo para el contenedor de la tabla */
-#tableContainer {
-    margin-top: 20px;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-/* Estilo para el botón de volver */
+/* Botón de volver centrado */
 #backButton {
     margin-top: 20px;
     padding: 10px 20px;

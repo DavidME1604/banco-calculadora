@@ -39,6 +39,7 @@ async function fetchChartImage() {
 const loadingScreen = document.getElementById('loadingScreen');
 loadingScreen.style.display = 'flex';
 window.onload = fetchChartImage;
+window.onload = fetchTableData;
 
 // Función para obtener los datos de la tabla desde el backend
 async function fetchTableData() {

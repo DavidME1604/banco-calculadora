@@ -10,20 +10,15 @@ async function fetchChartImage() {
             },
         });
 
-        // Verificar si la respuesta fue exitosa
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
 
-        // Obtener los datos JSON de la respuesta
         const data = await response.json();
-
-        // Extraer la URL de la imagen del gráfico
         const imageUrl = data.chartUrl;
 
-        // Obtener el elemento <img> y actualizar el atributo src
         const chartImage = document.getElementById('resultChartImage');
-        chartImage.src = 'https://backend-calculadora.onrender.com/static/grafico_funcion.png';
+        chartImage.src = imageUrl;
         chartImage.alt = 'Gráfico de Resultados';
         console.log(`URL de la imagen obtenida: ${imageUrl}`);
 
@@ -31,20 +26,14 @@ async function fetchChartImage() {
         console.error('Error al obtener la URL del gráfico:', error);
         alert('Ocurrió un error al obtener la imagen del gráfico.');
     } finally {
-        // Ocultar la pantalla de carga
         loadingScreen.style.display = 'none';
     }
 }
 
-const loadingScreen = document.getElementById('loadingScreen');
-loadingScreen.style.display = 'flex';
-window.onload = fetchChartImage;
-window.onload = fetchTableData;
-
 // Función para obtener los datos de la tabla desde el backend
 async function fetchTableData() {
-    // Hacer la solicitud al backend usando fetch
     const url = 'https://backend-calculadora.onrender.com/api/table';
+
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -53,26 +42,22 @@ async function fetchTableData() {
             },
         });
 
-        // Verificar si la respuesta fue exitosa
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
 
-        // Obtener los datos JSON de la respuesta
         const data = await response.json();
 
-        // Extraer la URL de la imagen del gráfico
         if (data.error) {
             alert(data.error);
         } else {
-            createTable(data.dataTable); // Llamar a la función para crear la tabla con los datos recibidos
+            createTable(data.dataTable);
         }
 
     } catch (error) {
-        console.error('Error al obtener la URL del gráfico:', error);
-        alert('Ocurrió un error al obtener la imagen del gráfico.');
+        console.error('Error al obtener los datos de la tabla:', error);
+        alert('Ocurrió un error al obtener los datos de la tabla.');
     } finally {
-        // Ocultar la pantalla de carga
         loadingScreen.style.display = 'none';
     }
 }
@@ -80,13 +65,11 @@ async function fetchTableData() {
 // Función para crear la tabla dinámica
 function createTable(data) {
     const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = ''; // Limpiar el contenido existente
+    tableBody.innerHTML = '';
 
-    // Iterar sobre los datos recibidos y crear las filas de la tabla
     data.forEach(row => {
         const tr = document.createElement('tr');
 
-        // Crear celdas para cada columna
         const periodCell = document.createElement('td');
         periodCell.textContent = row.period;
         tr.appendChild(periodCell);
@@ -107,13 +90,17 @@ function createTable(data) {
         totalCell.textContent = row.total;
         tr.appendChild(totalCell);
 
-        // Agregar la fila al cuerpo de la tabla
         tableBody.appendChild(tr);
     });
 }
 
-
-
 function goBack() {
     window.location.href = 'index.html';
 }
+
+// Mostrar pantalla de carga y ejecutar funciones al cargar la página
+window.onload = () => {
+    loadingScreen.style.display = 'flex';
+    fetchChartImage();
+    fetchTableData();
+};

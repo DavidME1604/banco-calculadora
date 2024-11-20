@@ -20,6 +20,12 @@
         </div>
         <button onclick="goBack()" id="backButton">Volver</button>
         <div id="tableContainer">
+            <div class="row-controls">
+                 <label for="rowCount">Filas a mostrar:</label>
+                <input type="number" id="rowCount" min="1" max="365" value="5">
+                <button onclick="updateTableRows()">Actualizar</button>
+            </div>
+
             <table id="interestTable" class="styled-table">
                 <thead>
                     <tr>

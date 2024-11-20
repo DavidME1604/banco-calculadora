@@ -33,7 +33,7 @@ async function fetchChartImage() {
 // Función para obtener los datos de la tabla desde el backend
 
 async function fetchTableData(requiredRows = 5) {
-    const url = 'http://127.0.0.1:10000/api/table'; // URL local para pruebas
+    const url = 'https://backend-calculadora.onrender.com/api/table';
 
     try {
         const response = await fetch(url, {

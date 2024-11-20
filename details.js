@@ -33,7 +33,7 @@ async function fetchChartImage() {
 // Función para obtener los datos de la tabla desde el backend
 
 async function fetchTableData(requiredRows = 5) {
-    const url = 'https://backend-calculadora.onrender.com/api/table';
+    const url = 'http://127.0.0.1:10000/api/table'; // URL local para pruebas
 
     try {
         const response = await fetch(url, {
@@ -41,7 +41,7 @@ async function fetchTableData(requiredRows = 5) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ requiredRows }) // Enviar el número de filas solicitadas
+            body: JSON.stringify({ requiredRows }), // Enviar el número de filas solicitadas
         });
 
         if (!response.ok) {
@@ -49,6 +49,11 @@ async function fetchTableData(requiredRows = 5) {
         }
 
         const data = await response.json();
+        if (data.error) {
+            console.error('Error en backend:', data.error);
+            alert(data.error);
+            return;
+        }
         if (data.dataTable && data.dataTable.length > 0) {
             createTable(data.dataTable); // Crear la tabla con los datos devueltos
         } else {
@@ -96,9 +101,9 @@ function createTable(data) {
         tableBody.appendChild(tr);
     });
 
-    // Sincroniza las filas visibles con el valor inicial
-    updateTableRows();
+    rowCountInput.value = data.length; // Actualizar el valor visible en el input
 }
+
 
 
 // Función para mostrar el número limitado de filas en la tabla
@@ -107,11 +112,13 @@ function updateTableRows() {
     const numRows = parseInt(rowCountInput.value) || 5;
     if (numRows < 1 || numRows > maxRows) {
         alert(`El número de filas debe estar entre 1 y ${maxRows}`);
+        rowCountInput.value = 5; // Restablecer al valor predeterminado
         return;
     }
     loadingScreen.style.display = 'flex'; // Mostrar pantalla de carga
-    fetchTableData(numRows);
+    fetchTableData(numRows); // Solicitar el número deseado de filas
 }
+
 
 
 

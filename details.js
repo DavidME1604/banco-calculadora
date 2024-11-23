@@ -79,7 +79,7 @@ function createTable(data) {
         const tr = document.createElement('tr');
 
         const periodCell = document.createElement('td');
-        periodCell.textContent = row.period;
+        periodCell.textContent = row.period; // Usa el periodo tal como se recibe del backend
         tr.appendChild(periodCell);
 
         const contributionCell = document.createElement('td');
@@ -100,11 +100,7 @@ function createTable(data) {
 
         tableBody.appendChild(tr);
     });
-
-    rowCountInput.value = data.length; // Actualizar el valor visible en el input
 }
-
-
 
 // Función para mostrar el número limitado de filas en la tabla
 

@@ -70,6 +70,46 @@ async function fetchTableData(requiredRows = 5) {
 let maxRows = 365; // Valor inicial máximo para la frecuencia diaria
 const rowCountInput = document.getElementById('rowCount');
 
+// Función para actualizar dinámicamente el título de la tabla
+function updateTableTitle(frequency) {
+    const columnTitle = document.querySelector('#interestTable thead th:first-child');
+    let title = 'Periodo';
+
+    switch (frequency) {
+        case 'diario':
+            title = 'Día';
+            break;
+        case 'semanal':
+            title = 'Semana';
+            break;
+        case 'mensual':
+            title = 'Mes';
+            break;
+        case 'trimestral':
+            title = 'Trimestre';
+            break;
+        case 'semestral':
+            title = 'Semestre';
+            break;
+        case 'anual':
+            title = 'Año';
+            break;
+    }
+
+    columnTitle.textContent = title;
+}
+
+// Mostrar pantalla de carga y ejecutar funciones al cargar la página
+window.onload = () => {
+    const defaultRows = 5;
+    const frequency = 'diario'; // Valor predeterminado
+    updateMaxRows(frequency);
+    updateTableTitle(frequency);  // Actualizar título dinámicamente
+    loadingScreen.style.display = 'flex';
+    fetchChartImage();
+    fetchTableData(defaultRows);
+};
+
 // Función para crear la tabla dinámica
 function createTable(data) {
     const tableBody = document.getElementById('tableBody');

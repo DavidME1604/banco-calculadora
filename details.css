@@ -13,7 +13,7 @@ body {
 
 .container {
     display: flex;
-    flex-direction: column; /* Alinea los elementos verticalmente */
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background: rgba(255, 255, 255, 0.15);
@@ -32,45 +32,49 @@ h1 {
     font-size: 1.8em;
 }
 
-/* Estilo para el contenedor de la imagen y la tabla */
+/* Contenedor de la imagen y la tabla */
 .data {
-    display: flex; /* Imagen y tabla lado a lado */
-    flex-flow: nowrap !important;
-    justify-content: space-between; /* Espacio entre los elementos */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch; /* Fuerza que los elementos tengan el mismo alto */
     width: 100%;
-    gap: 20px; /* Espaciado entre imagen y tabla */
+    gap: 20px;
 }
 
 /* Contenedor de la imagen */
 #chartContainer {
-    flex: 1; /* La imagen ocupa 50% del espacio */
+    flex: 1; /* Ocupa igual proporción que la tabla */
     text-align: center;
+    display: flex; /* Para centrar la imagen verticalmente */
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1); /* Fondo uniforme */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 #resultChartImage {
-    width: 100%; /* Imagen ocupa el 100% del contenedor */
-    height: auto; /* Conserva proporciones */
+    max-width: 100%;
+    height: auto; /* Conserva las proporciones */
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Contenedor de la tabla */
 #tableContainer {
-    flex: 1; /* La tabla ocupa 50% del espacio */
+    flex: 1; /* Ocupa igual proporción que la imagen */
     overflow-x: auto;
-    max-height: 70vh; /* Limita la altura */
-    overflow-y: auto;
+    display: flex; /* Para alinear la tabla verticalmente */
+    align-items: center;
+    justify-content: center;
     padding: 10px;
 }
 
-/* Estilo de la tabla */
+/* Tabla */
 #interestTable {
     width: 100%;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    overflow: hidden;
 }
 
 #interestTable th, #interestTable td {
@@ -91,83 +95,4 @@ h1 {
 
 #interestTable td {
     font-size: 0.9em;
-}
-
-/* Botón de volver */
-#backButton {
-    margin-top: 20px;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 10px;
-    background-color: #ff4081;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 200px;
-}
-
-#backButton:hover {
-    background-color: #e91e63;
-}
-
-/* Pantalla de carga */
-#loadingScreen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, #4a90e2 20%, #6a1b9a 80%);
-    display: none; /* Oculto por defecto */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000;
-    color: #fff;
-}
-
-.loader {
-    display: flex;
-    gap: 15px;
-}
-
-.bar {
-    width: 10px;
-    height: 40px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    animation: bounce 1s infinite;
-}
-
-@keyframes bounce {
-    0%, 100% {
-        transform: scaleY(0.5);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scaleY(1.5);
-        opacity: 1;
-    }
-}
-
-.bar:nth-child(1) {
-    animation-delay: 0s;
-}
-
-.bar:nth-child(2) {
-    animation-delay: 0.2s;
-}
-
-.bar:nth-child(3) {
-    animation-delay: 0.4s;
-}
-
-#loadingText {
-    margin-top: 20px;
-    font-size: 1.2em;
-    color: #ffffff;
 }

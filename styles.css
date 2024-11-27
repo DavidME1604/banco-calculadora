@@ -1,65 +1,174 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #4a90e2 20%, #6a1b9a 80%);
-    color: #fff;
-    height: auto;
-    min-height: 100vh;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #4a90e2 20%, #6a1b9a 80%);
+    color: #fff;
 }
 
 .container {
-    display: flex;
-    flex-wrap: nowrap; /* Mantiene la tabla y la imagen en una sola fila */
-    justify-content: space-between;
-    align-items: flex-start;
     background: rgba(255, 255, 255, 0.15);
     backdrop-filter: blur(10px);
     border-radius: 20px;
     padding: 30px;
-    width: 90%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 500px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 h1 {
     text-align: center;
-    width: 100%;
-    margin-bottom: 20px;
     font-size: 1.8em;
+    margin-bottom: 20px;
 }
 
-#chartContainer {
-    flex: 2; /* La imagen ocupa 2/3 del espacio */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+label {
+    width: 150px;
+    margin-right: 10px;
+    text-align: left;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.894);
+    color: #6d6d6d;
+}
+
+input:focus {
+    background: rgb(255, 255, 255);
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+#submitButton, #detailsButton {
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    width: 48%;
+}
+
+#submitButton {
+    background-color: #28a745;
+}
+
+#submitButton:hover {
+    background-color: #218838;
+}
+
+#detailsButton {
+    background-color: #17a2b8;
+}
+
+#detailsButton:hover {
+    background-color: #138496;
+}
+
+.result {
+    margin-top: 20px;
     text-align: center;
-    margin-right: 20px;
+    font-size: 1.2em;
 }
 
-#resultChartImage {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    display: block;
-    margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.1);
+/* Pantalla de Carga */
+#loadingScreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4a90e2 20%, #6a1b9a 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
 }
 
-#tableContainer {
-    flex: 1; /* La tabla ocupa 1/3 del espacio */
-    overflow-x: auto;
-    max-height: 70vh; /* Limita la altura */
-    overflow-y: auto;
-    background: rgba(255, 255, 255, 0.1);
+/* Contenedor del loader */
+.loader {
+    display: flex;
+    gap: 15px;
+}
+
+/* Estilo de las barras */
+.bar {
+    width: 10px;
+    height: 40px;
+    background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    animation: bounce 1s infinite;
+}
+
+/* Animación de rebote */
+@keyframes bounce {
+    0%, 100% {
+        transform: scaleY(0.5);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scaleY(1.5);
+        opacity: 1;
+    }
+}
+
+/* Delay para cada barra */
+.bar:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.bar:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.bar:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* Texto de la pantalla de carga */
+#loadingText {
+    margin-top: 20px;
+    font-size: 1.2em;
+    color: #ffffff;
+}
+
+#loadingScreen{
+    display: none;
+}
+
+select{
+    flex: 0.5;
+    width: 50%;
     padding: 10px;
+    border-radius: 10px;
 }
 
+/* Estilos para la tabla de interés */
 #interestTable {
     width: 100%;
+    margin-top: 20px;
     border-collapse: collapse;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -86,7 +195,14 @@ h1 {
     font-size: 0.9em;
 }
 
-/* Botón de volver */
+/* Estilo para el contenedor de la tabla */
+#tableContainer {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Estilo para el botón de volver */
 #backButton {
     margin-top: 20px;
     padding: 10px 20px;
@@ -95,36 +211,14 @@ h1 {
     background-color: #ff4081;
     color: #fff;
     cursor: pointer;
-    font-weight: bold;
+    width: 100%;
+    max-width: 200px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
-    max-width: 200px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
 
 #backButton:hover {
     background-color: #e91e63;
-}
-.row-controls {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10px;
-    gap: 10px;
-}
-
-.row-controls label {
-    font-size: 0.9em;
-}
-
-.row-controls input {
-    width: 50px;
-    padding: 5px;
-    text-align: center;
-    border-radius: 5px;
-    border: none;
 }

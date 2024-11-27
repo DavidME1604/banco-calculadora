@@ -19,7 +19,7 @@ function calculateInterest() {
 }
 
 async function fetchInterest() {
-    const url = 'http://17.0.0.1:10000//api/calculate';
+    const url = 'https://backend-calculadora.onrender.com//api/calculate';
     const initialCapital = document.getElementById('initialCapital').value;
     const periodicContribution = document.getElementById('periodicContribution').value;
     const finalCapital = document.getElementById('finalCapital').value;
@@ -60,42 +60,6 @@ async function fetchInterest() {
     }
 }
 
-async function fetchTableData(requiredRows = 5) {
-    const url = 'https://backend-calculadora.onrender.com/api/table';
-    const frequency = document.getElementById('frequency').value; // Obtener la frecuencia seleccionada
-
-    try {
-        const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ requiredRows, frequency }), // Enviar frecuencia
-        });
-
-        if (!response.ok) {
-            throw new Error(`Error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        if (data.error) {
-            console.error('Error en backend:', data.error);
-            alert(data.error);
-            return;
-        }
-        if (data.dataTable && data.dataTable.length > 0) {
-            createTable(data.dataTable);
-            updateTableTitle(frequency);  // Actualizar título dinámicamente
-        } else {
-            console.warn('No hay datos en la tabla');
-        }
-    } catch (error) {
-        console.error('Error al obtener los datos de la tabla:', error);
-        alert('Ocurrió un error al obtener los datos de la tabla.');
-    } finally {
-        loadingScreen.style.display = 'none';
-    }
-}
 
 
 loadingScreen.style.display = 'none';

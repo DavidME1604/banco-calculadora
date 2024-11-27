@@ -1,6 +1,6 @@
 // Función para obtener la URL del gráfico y actualizar la imagen
 async function fetchChartImage() {
-    const url = 'https://backend-calculadora.onrender.com/api/chart';
+    const url = 'http://127.0.0.1:10000/api/chart';
 
     try {
         const response = await fetch(url, {
@@ -32,7 +32,7 @@ async function fetchChartImage() {
 
 // Función para obtener los datos de la tabla desde el backend
 async function fetchTableData() {
-    const url = 'https://backend-calculadora.onrender.com/api/table';
+    const url = 'http://127.0.0.1:10000/api/table';
 
     try {
         const response = await fetch(url, {
@@ -46,8 +46,8 @@ async function fetchTableData() {
             throw new Error(`Error: ${response.status}`);
         }
 
-        const data = await response.json();
-        createTable(data.dataTable);
+        const data_table = await response.json();
+        createTable(data_table);
 
     } catch (error) {
         console.error('Error al obtener los datos de la tabla:', error);

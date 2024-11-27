@@ -19,7 +19,7 @@ function calculateInterest() {
 }
 
 async function fetchInterest() {
-    const url = 'https://backend-calculadora.onrender.com//api/calculate';
+    const url = 'http://17.0.0.1:10000//api/calculate';
     const initialCapital = document.getElementById('initialCapital').value;
     const periodicContribution = document.getElementById('periodicContribution').value;
     const finalCapital = document.getElementById('finalCapital').value;

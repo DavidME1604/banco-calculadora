@@ -1,6 +1,6 @@
 // Función para obtener la URL del gráfico y actualizar la imagen
 async function fetchChartImage() {
-    const url = 'http://127.0.0.1:10000/api/chart';
+    const url = 'https://backend-calculadora.onrender.com/api/chart';
 
     try {
         const response = await fetch(url, {
@@ -31,8 +31,9 @@ async function fetchChartImage() {
 }
 
 // Función para obtener los datos de la tabla desde el backend
-async function fetchTableData() {
-    const url = 'http://127.0.0.1:10000/api/table';
+
+async function fetchTableData(requiredRows = 5) {
+    const url = 'https://backend-calculadora.onrender.com/api/table';
 
     try {
         const response = await fetch(url, {
@@ -40,15 +41,24 @@ async function fetchTableData() {
             headers: {
                 'Content-Type': 'application/json',
             },
+            body: JSON.stringify({ requiredRows }), // Enviar el número de filas solicitadas
         });
 
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
 
-        const data_table = await response.json();
-        createTable(data_table);
-
+        const data = await response.json();
+        if (data.error) {
+            console.error('Error en backend:', data.error);
+            alert(data.error);
+            return;
+        }
+        if (data.dataTable && data.dataTable.length > 0) {
+            createTable(data.dataTable); // Crear la tabla con los datos devueltos
+        } else {
+            console.warn('No hay datos en la tabla');
+        }
     } catch (error) {
         console.error('Error al obtener los datos de la tabla:', error);
         alert('Ocurrió un error al obtener los datos de la tabla.');
@@ -57,16 +67,19 @@ async function fetchTableData() {
     }
 }
 
+let maxRows = 365; // Valor inicial máximo para la frecuencia diaria
+const rowCountInput = document.getElementById('rowCount');
+
 // Función para crear la tabla dinámica
 function createTable(data) {
     const tableBody = document.getElementById('tableBody');
-    tableBody.innerHTML = '';
+    tableBody.innerHTML = ''; // Limpia la tabla antes de agregar filas
 
     data.forEach(row => {
         const tr = document.createElement('tr');
 
         const periodCell = document.createElement('td');
-        periodCell.textContent = row.period;
+        periodCell.textContent = row.period; // Usa el periodo tal como se recibe del backend
         tr.appendChild(periodCell);
 
         const contributionCell = document.createElement('td');
@@ -89,13 +102,61 @@ function createTable(data) {
     });
 }
 
+// Función para mostrar el número limitado de filas en la tabla
+
+function updateTableRows() {
+    const numRows = parseInt(rowCountInput.value) || 5;
+    if (numRows < 1 || numRows > maxRows) {
+        alert(`El número de filas debe estar entre 1 y ${maxRows}`);
+        rowCountInput.value = 5; // Restablecer al valor predeterminado
+        return;
+    }
+    loadingScreen.style.display = 'flex'; // Mostrar pantalla de carga
+    fetchTableData(numRows); // Solicitar el número deseado de filas
+}
+
+
+
+
+
+function updateMaxRows(frequency) {
+    switch (frequency) {
+        case 'diario':
+            maxRows = 365;
+            break;
+        case 'semanal':
+            maxRows = 52;
+            break;
+        case 'mensual':
+            maxRows = 12;
+            break;
+        case 'trimestral':
+            maxRows = 4;
+            break;
+        case 'semestral':
+            maxRows = 2;
+            break;
+        case 'anual':
+            maxRows = 5;
+            break;
+        default:
+            maxRows = 365;
+    }
+    rowCountInput.max = maxRows; // Actualiza dinámicamente el atributo `max`
+}
+
+
 function goBack() {
     window.location.href = 'index.html';
 }
 
 // Mostrar pantalla de carga y ejecutar funciones al cargar la página
 window.onload = () => {
+    const defaultRows = 5;
+    const frequency = 'diario'; // Valor predeterminado
+    updateMaxRows(frequency); // Actualizar el máximo permitido según la frecuencia
     loadingScreen.style.display = 'flex';
     fetchChartImage();
-    fetchTableData();
+    fetchTableData(defaultRows); // Solicitar 5 filas por defecto
 };
+

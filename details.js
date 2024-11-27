@@ -159,4 +159,3 @@ window.onload = () => {
     fetchChartImage();
     fetchTableData(defaultRows); // Solicitar 5 filas por defecto
 };
-
